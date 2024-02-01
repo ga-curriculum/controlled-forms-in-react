@@ -4,7 +4,7 @@
 
 This will be a long microlesson going through the whole pattern of controlling a form's inputs using state.
 
-
+Build up to the end state one small step at a time, using different values in state, not setting value = {stateVariable } at first then seeing what happens, etc.
 
 Penultimate variant
 
