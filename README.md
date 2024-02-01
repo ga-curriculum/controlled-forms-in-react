@@ -8,10 +8,8 @@ tktk Write a short but descriptive summary of the content in this module.
 
 - Intro to React
 - Building Your First React App
-- User Events in React
 - React State Management
 - React Components
-- Lifting State
 
 ## Content
 
