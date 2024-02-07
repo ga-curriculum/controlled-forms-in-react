@@ -60,7 +60,7 @@ Once we have the state in place, we can add a "value" prop to our input form and
 
 First, we will define a function to help us change state from our input field:
 
-`App.jxs`:
+`App.jsx`:
 ```javascript
 
 const handleFirstNameChange = (e) => {
@@ -183,8 +183,8 @@ const handleChange = (e) => {
 **Note:** A couple of things are happening here:
 
 1. We are using the spread operator to copy any values from the original state into a new object for state.
-2. e.target.name is taking the value of the name prop in our input form
-3. e.target.value is acting the same as our previous functions and placing the values we type with said keys.
+2. `e.target.name` is taking the value of the name prop in our input form
+3. `e.target.value` is acting the same as our previous functions and placing the values we type with said keys.
 
 We can now use this one function in our onChange handlers.
 
