@@ -1,6 +1,6 @@
-# ![[tktk Module Name] - tktk Microlesson Name](./assets/hero.png)
+# ![Controlled Forms in React - Form Validations](./assets/hero.png)
 
-**Learning objective:** By the end of this lesson, students will be able to tktk
+**Learning objective:** By the end of this lesson, students will be able to understand and use form validation on their controlled forms in React.
 
 This is likely level up material that starts after the student has created a newItem form that is controlled by state.
 
@@ -8,4 +8,4 @@ For a decent code challenge the onSubmit handler could do some validations again
 
 Having a different error for each input would provide a great, robust example of how front-end validation can work.
 
-Be sure to remind students that front-end validation is NOT a legitimate security measure, but is there for the user experience and should still be provided to both save the backend from random bad requests and let the front-end user only submit forms without obvious errors.
+**Note:** Front-end validation is NOT a legitimate security measure, but is there for the user experience and should still be provided to both save the backend from random bad requests and let the front-end user only submit forms without obvious errors.
