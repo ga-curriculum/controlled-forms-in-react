@@ -18,9 +18,9 @@ You'll be prompted to provide a project name. `vite-project` is the default, but
 
 You'll be prompted to choose a project name. Let's name it `controlled-forms-in-react`.
 
-  Select a framework. Use the arrow keys to choose the `React` option and hit `Enter`.
+  - Select a framework. Use the arrow keys to choose the `React` option and hit `Enter`.
 
-  Select a variant. Again, use the arrow keys to choose `JavaScript` and hit `Enter`.
+  - Select a variant. Again, use the arrow keys to choose `JavaScript` and hit `Enter`.
 
 
 Navigate to your new project directory and install the necessary dependencies:
