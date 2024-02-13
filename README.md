@@ -2,7 +2,7 @@
 
 ## About
 
-tktk Write a short but descriptive summary of the content in this module.
+In this module, we will practice creating forms in a React component and using the State of the component to control our forms.
 
 ## Prerequisites
 
