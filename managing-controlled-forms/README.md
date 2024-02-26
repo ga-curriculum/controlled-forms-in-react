@@ -246,34 +246,51 @@ updateFullName({...fullName, lastName: 'o'})
 
 As a result of this dynamic behavior, we can use this one function in both of our `onChange` handlers!
 
-## Add the submit button.
+## Add the submit button
 
-We have the ability to hold these values in state but we don’t do anything. Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state
+Currently, we have the ability to hold these values in state but we can't do anything with them yet. Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state! 
 
 Let’s add a submit button to our form:
 
-```javascript
-<input type='submit' value='Submit Your Name' />
+```jsx
+<form>
+  <label htmlFor="firstName">First Name: </label>
+    <input
+      id="firstName"
+      name="firstName"
+      value={fullName.firstName}
+      onChange={handleChange}
+    />
+  <label htmlFor="lastName">Last Name: </label>
+    <input
+      id="lastName"
+      name="lastName"
+      value={fullName.lastName}
+      onChange={handleChange}
+    />
+    <input type='submit' value='Submit Your Name' />
+</form>
 ```
 
-When we click the button the page will refresh so let’s create a function to attach to a submit handler and prevent that behavior.
+When we submit a form the page will refresh by default, so let’s create a function to attach to a submit handler that prevents that behavior. Add the following function before the return: 
 
-```javascript
+```jsx
 const handleSubmit = (e) => {
+  // Prevent default event behavior
   e.preventDefault();
   console.log('the page does not refresh now');
 }
 ```
 
-Next, we’ll add it to a submit handler in the opening form tag:
+Next, we’ll add it to an `onSubmit` handler in the opening form tag:
 
-```javascript
+```jsx
 <form onSubmit={ handleSubmit }>
 ```
 
-Once in place, navigate to the console tab of your dev tools, click the submit button, and see if you can view the message without a page refresh.  If so, we are ready to modify this function:
+Once in place, navigate to the console tab of your dev tools, click the submit button, and see if you can view the message without a page refresh. If so, we are ready to modify this function:
 
-```javascript
+```jsx
 const handleSubmit = (e) => {
   e.preventDefault();
   const header = document.getElementById('full-name');
