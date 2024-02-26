@@ -135,20 +135,18 @@ const App = () => {
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label>
-          First Name:
-          <input 
-            value={ firstName }
-            onChange={ handleFirstNameChange }
+        <label for="first-name">First Name: </label>
+          <input
+            id="first-name"
+            value={firstName}
+            onChange={handleFirstNameChange}
           />
-        </label>
-        <label>
-          First Name:
+        <label for="last-name">Last Name: </label>
           <input 
-            value={ lastName }
-            onChange={ handleLastNameChange }
+            id="last-name"
+            value={lastName}
+            onChange={handleLastNameChange}
           />
-        </label>
       </form>
     </>
   );
