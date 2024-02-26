@@ -21,37 +21,34 @@ Having a virtual DOM leads to a more declarative approach to building a UI: we c
 
 ### A helpful analogy 
 
-Imagine that the UI of our React app is a large skyscraper. The real DOM is the building itself, and represents the elements and structure we see displayed on the screen. As you can imagine, any changes we make to the actual building would be time consuming and cumbersome. 
+Imagine that the UI of our React app is a large skyscraper. The real DOM is the building itself, and represents the elements and structure we see displayed on the screen. As you can imagine, any changes we make to the actual building would be time consuming and cumbersome - in fact, we'd need to tear down and rebuild the skyscraper every time we wanted to make any changes to the building. Sounds expensive. 
 
-React's virtual DOM, however, is like a real-time holographic model of our skyscraper. Since it's just a holograph, it's easy for us to manipulate and update quickly. We can make frequent changes to our holograph to show us what we want to see without actually changing the building itself. When changes *do* need to be made to our building, the virtual DOM allows React to efficiently make those updates only where necessary. 
+React's virtual DOM, however, is like a real-time holographic model of our skyscraper. Since it's just a holograph, it's easy for us to manipulate and update - in fact, we can make frequent changes to our holograph without changing the actual building itself. When changes *do* need to be made to our building, the virtual DOM allows React to efficiently make only the necessary updates. Rather than tearing down and rebuilding, our skyscraper is compared against the holographic's new "ideal" model, and is only updated where React noticed any differences.  
 
 ## Controlled form inputs
 
-In standard HTML, when a user types into a form input field, the browser internally updates the value of the input element. This value resides within the browser's memory and isn't directly accessible by our React component. This causes a disconnect between the UI and our app's state:
+In standard HTML, when a user types into a form input field, the browser internally updates the value of the input element. This value resides within the browser's memory and isn't directly accessible by our React component. This causes a disconnect between the UI and our app's state, which leads to two crucial issues:
 
 - Our app can't react to changes: If our React component needs to respond to the input value (by displaying a greeting or performing validation, for example), it has no way of knowing the latest value since it's not stored in state. 
 
 - There's a one-way flow: The information is only flowing from the user to the browser, and our react component is getting nothing. 
 
-To solve this problem, we can use [**controlled inputs**](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) to shift conrol from the browser to our React component. We can achieve this like so:
+To solve this problem, we use [**controlled inputs**](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) to shift control from the browser to our React component. We can set up a controlled input using the following steps: 
 
-1. Storing the input value in our React component's state with `useState`:
-
-Import `useState`
+First, we'll need to store the input value in our React component's state with `useState`, so let's import `useState`:
 
 ```jsx
 import { useState } from 'react';
 ```
 
-2. Binding the input's `value` prop to the state variable:
+Next, we'll bind the input's `value` prop to the state variable:
 
 ```jsx
 import { useState } from 'react';
 
+const App = () => {
 
-const NameInput() => {
-
-const [nameInput, setNameInput] = useState('');
+  const [nameInput, setNameInput] = useState('');
 
 // ... rest of our component
 }
@@ -60,19 +57,18 @@ const [nameInput, setNameInput] = useState('');
 - `nameInput` is the variable that will hold the value of the input field
 - `useState('')` sets the initial value of the state variable to an empty string
 
-3. Attaching an `onChange` event handler to the input. This captures the new value whenever a user types and updates state using `setState`.
+Finally, we'll need to attach an `onChange` event handler to the input. This captures the new value whenever a user types and updates state using `setState`:
 
 ```jsx
 import { useState } from 'react';
 
+const App = () => {
 
-const NameInput() => {
+  const [nameInput, setNameInput] = useState('');
 
-const [nameInput, setNameInput] = useState('');
-
-const handleChange = (event) => {
-  setNameInput(event.target.value);
-};
+  const handleChange = (event) => {
+    setNameInput(event.target.value);
+  };
 
   return (
     <>
@@ -82,13 +78,12 @@ const handleChange = (event) => {
         onChange={handleChange}  // Update state on change
       />
     </>
+  );
 
-  )
-
-}
+};
 ```
 
-- `value={nameInput}` ensures the input displays the current value from the state
+- `value={nameInput}` ensures the input displays the current value from state
 - `handleChange` is the event handler that captures changes in the input and updates the state using `setInputValue`
 
-
+Now, our input is considered "controlled" by React! We'll explore the benefits of this setup next. 
