@@ -1,30 +1,27 @@
 # ![Controlled Forms in React - Concepts](./assets/hero.png)
 
-**Learning objective:** By the end of this lesson, students will be able to explain the difference between the real DOM and virtual DOM, and discuss the benefits of controlled form inputs in React.
+**Learning objective:** By the end of this lesson, students will be able to differentiate between the real DOM and virtual DOM, and understand the benefits of controlled form inputs in React.
 
-## A quick refresher on state
+## React's Virtual DOM
 
-Remember state? Let's recap:
-
-An app's state is its invisible memory, remembering what you're doing, information you've entered, and how it looks. 
-
-A react app uses state to determine what the component looks like when it's first rendered. As soon as that state changes, the component is re-rendered to reflect those changes to state.  
-
-## React's virtual DOM
-
-React's virtual DOM is what makes it so performant. But what is it, and how does it differ from the real DOM?
+React's virtual DOM (VDOM) is part of what makes it so performant. In order to better understand its role, it's helpful to understand how the virtual DOM is distinguished from the "real" DOM.
 
 ### Real DOM vs. virtual DOM
 
-While the real DOM is the actual representation of the HTML structure of our app in the browser, the virtual DOM is an in-memory, lightweight representation of the real DOM that React creates and maintains. It's essentially a JavaScript object that mirrors the real DOM structure. 
+The DOM is a representation of the HTML structure of a web application as nodes and objects. Put plainly, the DOM is what allows programming languages to affect the structure, style, and content of an app. 
 
-The real DOM doesn't have any built-in methods for managing application state, meaning that developers have to handle state manually. This can quickly become complex and lead to inconsistencies. 
+The virtual DOM, meanwhile, is an in-memory lightweight representation of the DOM that React creates and maintains. It's essentially a JavaScript object that mirrors the real DOM's structure. 
 
-The virutal DOM, on the other hand, is managed by React and is therefore inherently linked to the app's state. This means state management is simplified and there's consistency between the view and data. 
+The real DOM doesn't have any built-in methods for managing application state, meaning that developers have to handle state manually. This can quickly become complex and increases the risk of desynchronization between the state of an application and what is being rendered to the user. 
+
+The virtual DOM, on the other hand, is managed by React and is therefore inherently linked to the app's state. This means state management is simplified and there is more consistency between the view and data. 
+
+Having a virtual DOM leads to a more declarative approach to building a UI: we can tell React what state we want our page to be in, and it will make the "real" DOM match that state change in a process called reconciliation. 
+
 
 ### A helpful analogy 
 
-Imagine that the UI of our React app is a large skyscraper. The real DOM is the building itself, and represents the elements and structure we see displayed on the screen. As you can imagine, any changes we make to the actual building would be time cosuming and cumbersome. 
+Imagine that the UI of our React app is a large skyscraper. The real DOM is the building itself, and represents the elements and structure we see displayed on the screen. As you can imagine, any changes we make to the actual building would be time consuming and cumbersome. 
 
 React's virtual DOM, however, is like a real-time holographic model of our skyscraper. Since it's just a holograph, it's easy for us to manipulate and update quickly. We can make frequent changes to our holograph to show us what we want to see without actually changing the building itself. When changes *do* need to be made to our building, the virtual DOM allows React to efficiently make those updates only where necessary. 
 

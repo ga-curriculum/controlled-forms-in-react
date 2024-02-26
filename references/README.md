@@ -1,4 +1,4 @@
-# ![[tktk Module Name] - References](./assets/hero.png)
+# ![Controlled Forms in React - References](./assets/hero.png)
 
 ## Lesson references
 

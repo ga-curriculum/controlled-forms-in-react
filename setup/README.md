@@ -1,4 +1,4 @@
-# ![[tktk Module Name] - Setup](./assets/hero.png)
+# ![Controlled Forms in React - Setup](./assets/hero.png)
 
 ## Setup
 
