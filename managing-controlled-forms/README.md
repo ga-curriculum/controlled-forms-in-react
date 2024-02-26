@@ -4,24 +4,17 @@
 
 ## Adding an Input Form to the `App` component
 
-In order to start our journey towards using controlled forms in React we will want to add a header, form, and input in our `App.jsx` component. 
+To get started, add the following to `App.jsx`: 
 
-1. The header will be where the text from our form fields are rendered on the page.
-2. The form will contain a single text input.  We will modify the form and input as our needs change.
-
-Add the following to `App.jsx`:
-
-```javascript
+```jsx
 const App = () => {
 
   return (
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label>
-          First Name:
-          <input />
-        </label>
+        <label for="first-name">First Name: </label>
+          <input id="first-name" />
       </form>
     </>
   );
@@ -30,16 +23,16 @@ const App = () => {
 export default App
 ```
 
-**Note:** By default an input in a form is a text input.  We are wrapping a label around our input for visual clarity.
+The header will be where the text from our form fields are rendered on the page. The form will contain a single text input. We'll modify the form and input as our needs change, but this is a good starting place.
 
-One we have the form rendered we can type values into it.  This is a great first step but our component has no way of keeping track of the values that we enter.  Our next step will begin to address this issue.
+## Add the `useState` hook to our component
 
-## Add the `useState` hook to our component.
+One we have the form rendered we can type values into it. Note that our component has no way of keeping track of the values that we enter, so our next step will begin to address this issue.
 
-In order to begin to track the value that is being input, we need to establish state.  We will first import the `useState` hook and declare a variable called "firstName".
+In order to begin to track the value that is being input, we need to establish state. We will first import the `useState` hook and declare a variable called "firstName".
 
 `App.jsx`:
-```javascript
+```jsx
 import { useState } from ‘react’; // importing the useState hook
 
 const App = () => {
@@ -47,47 +40,73 @@ const App = () => {
   const [firstName, updateFirstName] = useState(''); // declaring state with an empty string
   
   return (
-  .
-  .
-  .
-
+    <>
+      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <form>
+        <label for="first-name">First Name: </label>
+          <input id="first-name" />
+      </form>
+    </>
+  );
+}
 ```
 
-## Connect state and handling to our input field.
+## Connect state and handling to our input field
 
-Once we have the state in place, we can add a "value" prop to our input form and set the value of that prop to firstName and connect the update hook via the "onChange" prop.
+Once we have state in place, we can add a "value" prop to our input form and set the value of that prop to `firstName`. 
 
+Inside of our input field, we'll add a "value" prop to grab our value from state:
 
-First, we will define a function to help us change state from our input field:
+```jsx
+    <>
+      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <form>
+        <label for="first-name">First Name: </label>
+          <input 
+            id="first-name"
+            // Add the following: 
+            value={firstName} 
+          />
+      </form>
+    </>
+```
 
-`App.jsx`:
-```javascript
+Next, we will define a function to help us change state from our input field:
 
-const handleFirstNameChange = (e) => {
-  updateFirstName(e.target.value);
+```jsx
+const App = () => {
+
+  const [firstName, updateFirstName] = useState('');
+
+  // When invoked, update firstName state to equal the new value (taken from the event)
+  const handleFirstNameChange = (e) => {
+    updateFirstName(e.target.value);
+  }
+
+  return (
+    <>
+      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <form>
+        <label for="first-name">First Name: </label>
+          <input 
+            id="first-name"
+            value={firstName} 
+            // When the input changes, call the event handler
+            onChange={handleFirstNameChange}
+          />
+      </form>
+    </>
+  );
 }
 
+export default App
 ```
 
-Next, inside of our input field we will add a "value" prop to grab our value from state and an "onChange" prop to call our newly defined function any time a change is tracked in the field.  It will look like this:
-
-
-```javascript
-<label>
-  First Name:
-  <input
-    value={ firstName }
-    onChange={ handleFirstNameChange }
-  />
-</label>
-```
-Confirm that the changes you have implemented work by typing a value into the input field.  With your dev tools open to the React Components tab ( and highlighting the App component ) you should be able to see the value you typed in reflected in the state of the component!
-
-We now have the ability to track track the value of our input field via state.  Let’s repeat that process for a last name as well
+Confirm that the changes you have implemented work by typing a value into the input field. With your dev tools open to the React Components tab ( and highlighting the App component ) you should be able to see the value you typed in reflected in the state of the component!
 
 ## Repeat the Process for Last Name
 
-Let’s repeat the process and track state for the last name.  In order to do this we will need to:
+Now that we now have the ability to track the value of our input field via state, let’s repeat that process for a last name as well. In order to do this we will need to:
 
 1. Create state for the last name
 2. Create a function to handle the state change for that last name

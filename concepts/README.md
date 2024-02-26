@@ -16,7 +16,7 @@ The real DOM doesn't have any built-in methods for managing application state, m
 
 The virtual DOM, on the other hand, is managed by React and is therefore inherently linked to the app's state. This means state management is simplified and there is more consistency between the view and data. 
 
-Having a virtual DOM leads to a more declarative approach to building a UI: we can tell React what state we want our page to be in, and it will make the "real" DOM match that state change in a process called reconciliation. 
+Having a virtual DOM leads to a more declarative approach to building a UI: we can tell React what state we want our page to be in, and it will make the "real" DOM match that state in a process called reconciliation. 
 
 
 ### A helpful analogy 
