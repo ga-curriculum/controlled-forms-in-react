@@ -13,8 +13,8 @@ const App = () => {
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label for="first-name">First Name: </label>
-          <input id="first-name" />
+        <label htmlFor="firstName">First Name: </label>
+          <input id="firstName" />
       </form>
     </>
   );
@@ -43,8 +43,8 @@ const App = () => {
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label for="first-name">First Name: </label>
-          <input id="first-name" />
+        <label htmlFor="firstName">First Name: </label>
+          <input id="firstName" />
       </form>
     </>
   );
@@ -61,9 +61,9 @@ Inside of our input field, we'll add a "value" prop to grab our value from state
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label for="first-name">First Name: </label>
+        <label htmlFor="firstName">First Name: </label>
           <input 
-            id="first-name"
+            id="firstName"
             // Add the following: 
             value={firstName} 
           />
@@ -87,9 +87,9 @@ const App = () => {
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label for="first-name">First Name: </label>
+        <label htmlFor="firstName">First Name: </label>
           <input 
-            id="first-name"
+            id="firstName"
             value={firstName} 
             // When the input changes, call the event handler
             onChange={handleFirstNameChange}
@@ -115,7 +115,7 @@ Now that we now have the ability to track the value of our input field via state
 
 Once done your App component should look like this:
 
-```javascript
+```jsx
 import { useState } from 'react';
 
 const App = () => {
@@ -135,15 +135,15 @@ const App = () => {
     <>
       <h2 id='full-name'>The full name will appear in this header.</h2>
       <form>
-        <label for="first-name">First Name: </label>
+        <label htmlFor="firstName">First Name: </label>
           <input
-            id="first-name"
+            id="firstName"
             value={firstName}
             onChange={handleFirstNameChange}
           />
-        <label for="last-name">Last Name: </label>
+        <label htmlFor="lastName">Last Name: </label>
           <input 
-            id="last-name"
+            id="lastName"
             value={lastName}
             onChange={handleLastNameChange}
           />
@@ -155,43 +155,54 @@ const App = () => {
 export default App
 
 ```
-Test that you can update your state in the same manner that you did with the first input field.  If you can, you are ready to move forward.
+Test that you can update your state in the same manner that you did with the first input field. If you can, you are ready to move forward.
 
 
 ## Time for a refactor.
 
-You may have noticed that our code has some repetition in terms of functionality.  This presents us with an opportunity to refactor our state to simply one item to track and also create a more reusable function to be applied to multiple fields.  First, let’s change our state to the following:
+You may have noticed that our code has some repetition in terms of functionality. This presents us with an opportunity to refactor our state to simply one item to track and also create a more reusable function to be applied to multiple fields. First, let’s change our state to the following:
 
-```javascript
-const [fullName, updateFullName] = ({ firstName: ‘’, lastName: ‘’ });
+```jsx
+const [fullName, updateFullName] = ({ 
+    firstName: '', 
+    lastName: '' 
+  });
 ```
 
-We now have an object that can be used in both of our inputs.  We are also adding a "name" attribute to our inputs.  This is crucial because the value in our name attribute will become the "key" of our objects when we refactor the function that handles the change in the input:
+We now have an object that can be used to hold state for both of our inputs. We'll also add a `name` attribute to our inputs, as we'll use this value in the next step: 
 
-```javascript
+```jsx
 <form>
-  <label>
-    First Name:
+  <label htmlFor="firstName">First Name: </label>
     <input
-      name='firstName'
-      value={ fullName.firstName }
-      onChange={ handleFirstNameChange }
+      id="firstName"
+      name="firstName"
+      value={fullName.firstName}
+      onChange={handleFirstNameChange}
     />
-  </label>
-  <label>
-    First Name:
+  <label htmlFor="lastName">Last Name: </label>
     <input
-      name='lastName'
-      value={ fullName.lastName }
-      onChange={ handleLastNameChange }
+      id="lastName"
+      name="lastName"
+      value={fullName.lastName}
+      onChange={handleLastNameChange}
     />
-  </label>
 </form>
 ```
 
-With our form inputs refactored, let’s refactor our handler functions into one function that can be passed to both inputs:
+With our form inputs refactored, let’s also refactor our handler functions into a single function that can be passed to both inputs:
 
-```javascript
+```jsx
+// Remove this function: 
+const handleFirstNameChange = (e) => {
+    updateFirstName(e.target.value);
+}
+// Remove this function: 
+const handleLastNameChange = (e) => {
+    updateLastName(e.target.value);
+}
+
+// Add the following: 
 const handleChange = (e) => {
   updateFullName({ ...fullName, [e.target.name]: e.target.value });
 }
@@ -199,16 +210,45 @@ const handleChange = (e) => {
 
 **Note:** A couple of things are happening here:
 
-1. We are using the spread operator to copy any values from the original state into a new object for state.
-2. `e.target.name` is taking the value of the name prop in our input form
-3. `e.target.value` is acting the same as our previous functions and placing the values we type with said keys.
+1. We are using the spread operator to copy any values from the original state into a new object for state. This way, when updating the `firstName` state, we're not losing `lastName` state, and vice versa! 
+2. `e.target.name` is taking the value of the name prop in our input form. We're able to dynamically access the key through the use of square bracket notation. If the user types into the `firstName` input, then the `name` of that input is used as the key, and the `value` of that input is used as the value. 
 
-We can now use this one function in our onChange handlers.
+For a more visual example, typing the name "Sam" into the first name input would result in an event handler that resolves to the following: 
+```jsx
+// First letter typed ("S")
+updateFullName({...fullName, firstName: 'S'})
+// Second letter typed ("a")
+updateFullName({...fullName, firstName: 'Sa'})
+// Third letter typed ("m")
+updateFullName({...fullName, firstName: 'Sam'})
 
+// With our state looking like this afterwords: 
+{
+  firstName: 'Sam',
+  lastName: ''
+}
+```
+
+Note that because we are spreading all of our existing state into the new state object, we don't lose the `firstName` property's value even when we call the handler from our last name input: 
+
+```jsx
+// First letter typed ("V")
+updateFullName({...fullName, lastName: 'V'})
+// Second letter typed("o")
+updateFullName({...fullName, lastName: 'o'})
+
+// Updated state: 
+{
+  firstName: 'Sam',
+  lastName: 'Vo'
+}
+```
+
+As a result of this dynamic behavior, we can use this one function in both of our `onChange` handlers!
 
 ## Add the submit button.
 
-We have the ability to hold these values in state but we don’t do anything.  Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state
+We have the ability to hold these values in state but we don’t do anything. Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state
 
 Let’s add a submit button to our form:
 
