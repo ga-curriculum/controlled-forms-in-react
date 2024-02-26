@@ -7,11 +7,15 @@
 To get started, add the following to `App.jsx`: 
 
 ```jsx
+import { useState } from ‘react’; // import the useState hook
+
 const App = () => {
+  // Add placeholder text for the title - we'll use the form to update this state by the end of this lesson
+  const [title, setTitle] = useState('The full name will appear here.')
 
   return (
     <>
-      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <h2>{title}</h2>
       <form>
         <label htmlFor="firstName">First Name: </label>
           <input id="firstName" />
@@ -31,17 +35,18 @@ One we have the form rendered we can type values into it. Note that our componen
 
 In order to begin to track the value that is being input, we need to establish state. We will first import the `useState` hook and declare a variable called "firstName".
 
-`App.jsx`:
+
 ```jsx
 import { useState } from ‘react’; // importing the useState hook
 
 const App = () => {
 
+  const [title, setTitle] = useState('The full name will appear here.')
   const [firstName, updateFirstName] = useState(''); // declaring state with an empty string
   
   return (
     <>
-      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <h2>{title}</h2>
       <form>
         <label htmlFor="firstName">First Name: </label>
           <input id="firstName" />
@@ -59,7 +64,7 @@ Inside of our input field, we'll add a "value" prop to grab our value from state
 
 ```jsx
     <>
-      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <h2>{title}</h2>
       <form>
         <label htmlFor="firstName">First Name: </label>
           <input 
@@ -120,6 +125,7 @@ import { useState } from 'react';
 
 const App = () => {
 
+  const [title, setTitle] = useState('The full name will appear here.')
   const [firstName, updateFirstName] = useState('');
   const [lastName, updateLastName] = useState('');
 
@@ -133,7 +139,7 @@ const App = () => {
 
   return (
     <>
-      <h2 id='full-name'>The full name will appear in this header.</h2>
+      <h2>{title}</h2>
       <form>
         <label htmlFor="firstName">First Name: </label>
           <input
@@ -163,7 +169,9 @@ Test that you can update your state in the same manner that you did with the fir
 You may have noticed that our code has some repetition in terms of functionality. This presents us with an opportunity to refactor our state to simply one item to track and also create a more reusable function to be applied to multiple fields. First, let’s change our state to the following:
 
 ```jsx
-const [fullName, updateFullName] = ({ 
+const [title, setTitle] = useState('The full name will appear here.')
+// Replace firstName and lastName state with the following: 
+const [fullName, setFullName] = ({ 
     firstName: '', 
     lastName: '' 
   });
@@ -202,9 +210,9 @@ const handleLastNameChange = (e) => {
     updateLastName(e.target.value);
 }
 
-// Add the following: 
+// Replace them with the following: 
 const handleChange = (e) => {
-  updateFullName({ ...fullName, [e.target.name]: e.target.value });
+  setFullName({ ...fullName, [e.target.name]: e.target.value });
 }
 ```
 
@@ -216,11 +224,11 @@ const handleChange = (e) => {
 For a more visual example, typing the name "Sam" into the first name input would result in an event handler that resolves to the following: 
 ```jsx
 // First letter typed ("S")
-updateFullName({...fullName, firstName: 'S'})
+setFullName({...fullName, firstName: 'S'})
 // Second letter typed ("a")
-updateFullName({...fullName, firstName: 'Sa'})
+setFullName({...fullName, firstName: 'Sa'})
 // Third letter typed ("m")
-updateFullName({...fullName, firstName: 'Sam'})
+setFullName({...fullName, firstName: 'Sam'})
 
 // With our state looking like this afterwords: 
 {
@@ -233,9 +241,9 @@ Note that because we are spreading all of our existing state into the new state 
 
 ```jsx
 // First letter typed ("V")
-updateFullName({...fullName, lastName: 'V'})
+setFullName({...fullName, lastName: 'V'})
 // Second letter typed("o")
-updateFullName({...fullName, lastName: 'o'})
+setFullName({...fullName, lastName: 'o'})
 
 // Updated state: 
 {
@@ -244,7 +252,31 @@ updateFullName({...fullName, lastName: 'o'})
 }
 ```
 
-As a result of this dynamic behavior, we can use this one function in both of our `onChange` handlers!
+As a result of this dynamic behavior, we can use this one function in both of our `onChange` handlers! 
+
+Let's go ahead and change those now: 
+
+```jsx
+<form>
+  <label htmlFor="firstName">First Name: </label>
+    <input
+      id="firstName"
+      name="firstName"
+      value={fullName.firstName}
+      // Update to accept handleChange
+      onChange={handleChange}
+    />
+  <label htmlFor="lastName">Last Name: </label>
+    <input
+      id="lastName"
+      name="lastName"
+      value={fullName.lastName}
+      // Update to accept handleChange
+      onChange={handleChange}
+    />
+    <input type='submit' value='Submit Your Name' />
+</form>
+```
 
 ## Add the submit button
 
@@ -272,7 +304,7 @@ Let’s add a submit button to our form:
 </form>
 ```
 
-When we submit a form the page will refresh by default, so let’s create a function to attach to a submit handler that prevents that behavior. Add the following function before the return: 
+When we submit a form the page will refresh by default, so let’s create a function we can attach to the submit handler which prevents that behavior. Add the following function before the return: 
 
 ```jsx
 const handleSubmit = (e) => {
@@ -285,21 +317,20 @@ const handleSubmit = (e) => {
 Next, we’ll add it to an `onSubmit` handler in the opening form tag:
 
 ```jsx
-<form onSubmit={ handleSubmit }>
+<form onSubmit={handleSubmit}>
 ```
 
-Once in place, navigate to the console tab of your dev tools, click the submit button, and see if you can view the message without a page refresh. If so, we are ready to modify this function:
+Once in place, navigate to the console tab of your dev tools, click the submit button, and see if you can view the message without a page refresh. If so, we are ready to make our final adjustments: 
 
 ```jsx
 const handleSubmit = (e) => {
   e.preventDefault();
-  const header = document.getElementById('full-name');
-  header.innerText = `Your name is: ${fullName.firstName} ${fullName.lastName}`
-  updateFullName({ firstName: '', lastName: '' });
+  // Set our title state based on the fullName state at time of submission
+  setTitle(`Your name is: ${fullName.firstName} ${fullName.lastName}`)
+  // Reset fullName state to clear our form inputs
+  setFullName({ firstName: '', lastName: '' });
 }
 ```
-
-Now, our function grabs our header element, modifies the innerText of it to include the firstName and lastName found in state, and updates the state to empty strings which clears the form as well.
 
 Your full `App.jsx` should look like this:
 
@@ -307,41 +338,39 @@ Your full `App.jsx` should look like this:
 import { useState } from 'react';
 
 const App = () => {
-
-  const [fullName, updateFullName] = useState({ firstName: '', lastName: '' });
+  
+  const [title, setTitle] = useState('The full name will appear here.')
+  const [fullName, setFullName] = useState({ firstName: '', lastName: '' });
 
   const handleChange = (e) => {
-    updateFullName({ ...fullName, [e.target.name]: e.target.value });
+    setFullName({ ...fullName, [e.target.name]: e.target.value });
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const header = document.getElementById('full-name');
-    header.innerText = `Your name is: ${fullName.firstName} ${fullName.lastName}`;
-    updateFullName({ firstName: '', lastName: '' });
-  }
+  e.preventDefault();
+  setTitle(`Your name is: ${fullName.firstName} ${fullName.lastName}`)
+  setFullName({ firstName: '', lastName: '' });
+}
 
   return (
     <>
-      <h2 id='full-name'>The full name will appear in this header.</h2>
-      <form onSubmit={ handleSubmit }>
-        <label>
-          First Name:
+      <h2>{title}</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="firstName">First Name: </label>
           <input
-            name='firstName'
-            value={ fullName.firstName }
-            onChange={ handleChange }
+            id="firstName"
+            name="firstName"
+            value={fullName.firstName}
+            onChange={handleChange}
           />
-        </label>
-        <label>
-          First Name:
+        <label htmlFor="lastName">Last Name: </label>
           <input
-            name='lastName'
-            value={ fullName.lastName }
-            onChange={ handleChange }
+            id="lastName"
+            name="lastName"
+            value={fullName.lastName}
+            onChange={handleChange}
           />
-        </label>
-        <input type='submit' value='Submit Your Name'/>
+          <input type='submit' value='Submit Your Name' />
       </form>
     </>
   );
@@ -349,3 +378,5 @@ const App = () => {
 
 export default App
 ```
+
+Test it out in the browser! 
