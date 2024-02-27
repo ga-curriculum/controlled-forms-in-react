@@ -4,22 +4,21 @@
 
 ## Using State variables to validate our data
 
-Up until this point we have connected our HTML forms to state to make sure that the latest state is reflected and controlled in the form.  We can also use the values in state to inform the user whether or not the information they are providing is valid based on our criteria.
+Up until this point we have connected our HTML forms to state to make sure that the latest state is reflected and controlled in the form. We can also use the values in state to inform the user whether or not the information they are providing is valid based on our criteria.
 
-We will show how to do this a couple of ways.
+We will show how to do this a couple of ways:
 
 1. We will use values in the state of our component to let a user know during the changes in input if the data they have entered is valid.
 
-2. We will also send an alert during a form submission if the data they are trying to submit is not valid.
-
+2. We will conditionally disable the submit button if the data they are trying to submit is not valid.
 
 ### Modifying our State
 
-Let's take the form we were working on for a username and make some adjustments in order to start to add validation to the data.  Previously, our form only had inputs for the `firstName` and `lastName`.  We will keep those and add a couple more inputs for `password` and `passwordConfirm`.  We will also add state for any errors as well.
+Let's take the form we were working on for a username and make some adjustments in order to start to add validation to the data. Previously, our form state only had properties for `firstName` and `lastName`. We will keep those, and also add `password` and `passwordConfirm`. We will also add state to keep track of any errors as well.
 
-In your `App.jsx` file let's change our state to the following:
+In `App.jsx`, change state to the following:
 
-`App.jsx`:
+
 ```jsx
 const [formData, setFormData] = useState({
     firstName: '',
@@ -27,30 +26,30 @@ const [formData, setFormData] = useState({
     password: '',
     passwordConfirmation: ''
   });
-  const [errors, setErrors] = useState({
-    firstName: '',
-    lastName: '',
-    password: '',
-    passwordConfirmation: ''
-  });
+const [errors, setErrors] = useState({
+  firstName: '',
+  lastName: '',
+  password: '',
+  passwordConfirmation: ''
+});
 ```
 
 We are doing a few things here:
 
-1. Changing our state variable from `username` to `formData`.  This is a little better on our naming convention.
+1. Changing our state variable from `fullName` to `formData` - a more fitting naming convention now that we're adding more inputs to control.
 
 2. We are adding another state variable to store and track any errors that occur as we are validating user input.
 
 Since we have modified our state we need to change our form to reflect this new state:
 
-`App.jsx`:
 ```jsx
  return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>First Name:</label>
+        <label htmlFor="firstName">First Name:</label>
         <input
           type="text"
+          id="firstName"
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
@@ -58,9 +57,10 @@ Since we have modified our state we need to change our form to reflect this new 
         {errors.firstName && <div className="error">{errors.firstName}</div>}
       </div>
       <div>
-        <label>Last Name:</label>
+        <label htmlFor="lastName">Last Name:</label>
         <input
           type="text"
+          id="lastName"
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
@@ -68,9 +68,10 @@ Since we have modified our state we need to change our form to reflect this new 
         {errors.lastName && <div className="error">{errors.lastName}</div>}
       </div>
       <div>
-        <label>Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
+          id="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
@@ -78,9 +79,10 @@ Since we have modified our state we need to change our form to reflect this new 
         {errors.password && <div className="error">{errors.password}</div>}
       </div>
       <div>
-        <label>Password Confirmation:</label>
+        <label htmlFor="passwordConfirmation">Password Confirmation:</label>
         <input
           type="password"
+          id="passwordConfirmation"
           name="passwordConfirmation"
           value={formData.passwordConfirmation}
           onChange={handleChange}
@@ -90,10 +92,10 @@ Since we have modified our state we need to change our form to reflect this new 
       <button type="submit">Submit</button>
     </form>
   );
-};
+
 ```
 
-Notice that in addition to adding more form fields to reflect the new data we intend to track in state, we have also added an optional `div` to display if an error is checked into our state based on our own validation criteria that we define.  In order to determine whether or not this data is valid, we want to define some rules.  Since this is a simple input form we will create some arbitrary rules for the sake of triggering validation errors and displaying them on our form:
+Notice that we have added an optional `div` that we can display if an error message needs to be shown to the user. These errors will be based on validation criteria that we define. In order to determine whether or not input data is valid, we'll need to define some rules. Since this is a simple input form, let's create some arbitrary rules for the sake of triggering validation errors and displaying them on our form:
 
 ### Adding form validation in `handleChange`
 
@@ -102,58 +104,94 @@ Notice that in addition to adding more form fields to reflect the new data we in
 3. Passwords must be at least six characters long.
 4. Passwords and password confirmations must match.
 
-We will tackle the rules in our `handleChange` function.
+We will tackle the rules in our `handleChange` function:
 
-`App.jsx`:
+To help keep a separation of concerns, let's create a new helper function called `checkErrors`, whose job will be to check each input as it changes and test it against a provided criteria: 
+
+```jsx
+// We only need the target property from the event, so we'll destructure it in the parameter
+const checkErrors = ({ target }) => {
+    if (target.name === 'firstName') {
+      setErrors({ ...errors, firstName: target.value.length < 3 
+        ? 'First name must be at least 3 characters long' 
+        : '' 
+      });
+    }
+    if (target.name === 'lastName') {
+      setErrors({ ...errors, lastName: target.value.length < 4 
+        ? 'Last name must be at least 4 characters long' 
+        : '' 
+      });
+    }
+    if (target.name === 'password') {
+      setErrors({ ...errors, password: target.value.length < 6 
+        ? 'Password must be at least 6 characters long' 
+        : '' 
+      });
+    }
+    if (target.name === 'passwordConfirmation') {
+      setErrors({ ...errors, passwordConfirmation: formData.password !== target.value 
+        ? 'Passwords do not match' 
+        : '' 
+      });
+    }
+  }
+```
+
+Next, add `checkErrors` to our existing `handleChange` function:
+
 ```jsx
 const handleChange = (e) => {
     // Update form data
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Perform validation
-    if (e.target.name === 'firstName') {
-      setErrors({ ...errors, firstName: e.target.value.length < 3 ? 'First name must be at least 3 characters long' : '' });
-    } else if (e.target.name === 'lastName') {
-      setErrors({ ...errors, lastName: e.target.value.length < 4 ? 'Last name must be at least 4 characters long' : '' });
-    } else if (e.target.name === 'password') {
-      setErrors({ ...errors, password: e.target.value.length < 6 ? 'Password must be at least 6 characters long' : '' });
-    } else if (e.target.name === 'passwordConfirmation') {
-      setErrors({ ...errors, passwordConfirmation: formData.password !== e.target.value ? 'Passwords do not match' : '' });
-    }
+    // Invoke helper function, passing it the event
+    checkErrors(e)
   };
 ```
 
-After adding this code try to type into the four different inputs.  If these validation rules are added correctly, you should see the "error" messages beneath the corresponding form fields.  When you have entered data that is "valid" those messages will go away.  This is a great example of using the values in state to help perform form validation.
+After adding this code try to type into the four different inputs. If these validation rules were added correctly, you should see the "error" messages beneath the corresponding form fields. When you have entered data that is "valid" those messages will go away. This is a great example of using the values in state to help perform form validation.
 
 
-### Adding form validation in `handleSubmit`
+### Using form validation to disable submission
 
-One can also perform the form validations when the form is submitted as well.  In our example, we will modify `handleSubmit` to send an alert regarding any validation error. If the form is submitted with valid data we will see a console log of the form data.  Modify your `handleSubmit` function to look like this:
+We can also use state to do things like disable or enable a submission button! 
 
-`App.jsx`
+We want our button to be disabled under two circumstances: 
+
+1. If the form is invalid, which is indicated by 
+2. If any of the form inputs have no input. 
+
+We don't need to create new state to handle this, as we can calculate both values off of existing state: 
+
+```jsx
+// Use Object.values() to create an array of the values in the errors object
+// Check if any of the values are truthy (non-empty strings). If so, .some() will return true. 
+const formIsInvalid = Object.values(errors).some(Boolean)
+// Use Object.values() to create an array of the values in the formData object
+// Check if all of the values are truthy (not empty strings) using .every(). Then, use the bang operator to invert the boolean value. 
+// formHasNoInput will be true only if each value in formData is NOT an empty string. 
+const formHasNoInput = !Object.values(formData).every(Boolean)
+```
+
+Modify your `handleSubmit` function to look like this:
+
 ```jsx
 const handleSubmit = (e) => {
     e.preventDefault();
-    // Validate form data before submission
-    if (formData.firstName.length < 3) {
-      alert('Please correct the first name in the form.');
-      return;  
-    } else if (formData.lastName.length < 5) {
-      alert('Please correct the last name in the form.');
-      return;
-    } else if (formData.password.length < 6) {
-      alert('Please correct the password in the form.');
-      return;
-    } else if (formData.password !== formData.passwordConfirmation) {
-      alert('Please make sure your passwords match.');
-      return;
-    }
-    
     // Submit the form data
     // Example: You can send it to an API endpoint
     console.log('Form submitted:', formData);
   }; 
 ```
 
-Now when you try to submit a form with data that you have deemed not valid the form data will not be sent and an alert will pop up.  You will generally want to avoid using alerts in your code but the intent here is to implement a pattern for validating data before it would be sent as an API call.
+Finally, let's use our calculated values to conditionally disabled the submit button: 
 
-**Note:** Front-end validation is NOT a legitimate security measure, but is there for the user experience and should still be provided to both save the backend from random bad requests and let the front-end user only submit forms without obvious errors.
+```jsx
+<button type="submit" disabled={formIsInvalid || formHasNoInput}>Submit</button>
+```
+
+If either `formIsInvalid` or `formHasNoInput` are true, then the button will be disabled.
+
+Try it out! 
+
+**Note:** Front-end validation is NOT a legitimate security measure, but creates a better user experience and should still be provided to both save the backend from random bad requests and let the front-end user only submit forms without obvious errors. It would not be difficult for a bad actor to circumvent a disabled button, for example, so it's crucial to not rely on front-end validation for security. 
