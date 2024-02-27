@@ -2,12 +2,7 @@
 
 ## Lesson references
 
-- [tktk descriptive name of link]()
-- [tktk descriptive name of link]()
-- [tktk descriptive name of link]()
+[Controlled Inputs](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)
 
-## Level Up references
 
-- [tktk descriptive name of link]()
-- [tktk descriptive name of link]()
-- [tktk descriptive name of link]()
+
