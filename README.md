@@ -15,9 +15,9 @@ In this module, we will practice creating forms in a React component and using t
 
 | Lesson | Skills |
 | ------ | ------ |
-| [Setup](./setup/README.md)                               | Setting up the development environment |
-| [Concepts](./concepts/README.md)                               | Describe the clash between virtual dom and real dom and why controlled forms are a preferred pattern |
-| [Managing Controlled Forms](./managing-controlled-forms/README.md) | Control a form's state                    |
+| [Setup](./setup/README.md) | Setting up the development environment |
+| [Concepts](./concepts/README.md) | Describe the clash between virtual dom and real dom and why controlled forms are a preferred pattern |
+| [Managing Controlled Forms](./managing-controlled-forms/README.md) | Control a form's state |
 
 
 
