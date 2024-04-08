@@ -27,13 +27,13 @@ const App = () => {
 export default App
 ```
 
-The header will be where the text from our form fields are rendered on the page. The form will contain a single text input. We'll modify the form and input as our needs change, but this is a good starting place.
+The header will be where the text from our form fields is rendered on the page. The form will contain a single text input. We'll modify the form and input as our needs change, but this is a good starting place.
 
 ## Add the `useState` hook to our component
 
-One we have the form rendered we can type values into it. Note that our component has no way of keeping track of the values that we enter, so our next step will begin to address this issue.
+Once we have the form rendered, we can type values into it. Note that our component has no way of keeping track of the values we enter, so our next step will address this issue.
 
-In order to begin to track the value that is being input, we need to establish state. We will first import the `useState` hook and declare a variable called "firstName".
+To begin tracking the value being input, we need to establish state. We will first import the `useState` hook and declare a variable called "firstName".
 
 
 ```jsx
@@ -60,7 +60,7 @@ const App = () => {
 
 Once we have state in place, we can add a "value" prop to our input form and set the value of that prop to `firstName`. 
 
-Inside of our input field, we'll add a "value" prop to grab our value from state:
+Inside our input field, we'll add a "value" prop to grab our value from state:
 
 ```jsx
     <>
@@ -83,7 +83,7 @@ const App = () => {
 
   const [firstName, updateFirstName] = useState('');
 
-  // When invoked, update firstName state to equal the new value (taken from the event)
+  // When invoked, update the firstName state to equal the new value (taken from the event)
   const handleFirstNameChange = (e) => {
     updateFirstName(e.target.value);
   }
@@ -107,18 +107,18 @@ const App = () => {
 export default App
 ```
 
-Confirm that the changes you have implemented work by typing a value into the input field. With your dev tools open to the React Components tab ( and highlighting the App component ) you should be able to see the value you typed in reflected in the state of the component!
+Confirm that your implemented changes work by typing a value into the input field. With your dev tools open to the React Components tab ( and highlighting the App component ), you should see the value you typed in reflected in the component's state!
 
-## Repeat the Process for Last Name
+## Repeat the Process for the Last Name
 
-Now that we now have the ability to track the value of our input field via state, let’s repeat that process for a last name as well. In order to do this we will need to:
+Now that we can track the value of our input field via state, let’s repeat that process for a last name. To do this, we will need to:
 
 1. Create state for the last name
 2. Create a function to handle the state change for that last name
 3. Connect this logic to a new input field
-4. Test it out and make sure that you can track to elements of state for first name and last name
+4. Test it out and make sure that you can track the elements of state for first name and last name
 
-Once done your App component should look like this:
+Once done, your App component should look like this:
 
 ```jsx
 import { useState } from 'react';
@@ -161,12 +161,12 @@ const App = () => {
 export default App
 
 ```
-Test that you can update your state in the same manner that you did with the first input field. If you can, you are ready to move forward.
+Test that you can update your state like you did with the first input field. If you can, you are ready to move forward.
 
 
 ## Time for a refactor.
 
-You may have noticed that our code has some repetition in terms of functionality. This presents us with an opportunity to refactor our state to simply one item to track and also create a more reusable function to be applied to multiple fields. First, let’s change our state to the following:
+You may have noticed that our code has some repetition in terms of functionality. This gives us an opportunity to refactor our state to simply one item to track and create a more reusable function to be applied to multiple fields. First, let’s change our state to the following:
 
 ```jsx
 const [title, setTitle] = useState('The full name will appear here.')
@@ -177,7 +177,7 @@ const [fullName, setFullName] = ({
   });
 ```
 
-We now have an object that can be used to hold state for both of our inputs. We'll also add a `name` attribute to our inputs, as we'll use this value in the next step: 
+We now have an object that can hold state for both inputs. We'll also add a `name` attribute to our inputs, as we'll use this value in the next step: 
 
 ```jsx
 <form>
@@ -219,7 +219,7 @@ const handleChange = (e) => {
 **Note:** A couple of things are happening here:
 
 1. We are using the spread operator to copy any values from the original state into a new object for state. This way, when updating the `firstName` state, we're not losing `lastName` state, and vice versa! 
-2. `e.target.name` is taking the value of the name prop in our input form. We're able to dynamically access the key through the use of square bracket notation. If the user types into the `firstName` input, then the `name` of that input is used as the key, and the `value` of that input is used as the value. 
+2. `e.target.name` is taking the value of the name prop in our input form. We're able to dynamically access the key through the use of square bracket notation. If the user types into the `firstName` input, then the `name` of that input is used as the key and the `value` of that input is used as the value. 
 
 For a more visual example, typing the name "Sam" into the first name input would result in an event handler that resolves to the following: 
 ```jsx
@@ -230,7 +230,7 @@ setFullName({...fullName, firstName: 'Sa'})
 // Third letter typed ("m")
 setFullName({...fullName, firstName: 'Sam'})
 
-// With our state looking like this afterwords: 
+// With our state looking like this afterward: 
 {
   firstName: 'Sam',
   lastName: ''
@@ -280,7 +280,7 @@ Let's go ahead and change those now:
 
 ## Add the submit button
 
-Currently, we have the ability to hold these values in state but we can't do anything with them yet. Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state! 
+We can hold these values in state, but we can't do anything with them yet. Our last step will be to add a submit button, connect it to a mock "submit" function, and reset our state! 
 
 Let’s add a submit button to our form:
 
@@ -304,7 +304,7 @@ Let’s add a submit button to our form:
 </form>
 ```
 
-When we submit a form the page will refresh by default, so let’s create a function we can attach to the submit handler which prevents that behavior. Add the following function before the return: 
+When we submit a form, the page will refresh by default, so let’s create a function we can attach to the submit handler that prevents that behavior. Add the following function before the return: 
 
 ```jsx
 const handleSubmit = (e) => {
@@ -325,7 +325,7 @@ Once in place, navigate to the console tab of your dev tools, click the submit b
 ```jsx
 const handleSubmit = (e) => {
   e.preventDefault();
-  // Set our title state based on the fullName state at time of submission
+  // Set our title state based on the fullName state at the time of submission
   setTitle(`Your name is: ${fullName.firstName} ${fullName.lastName}`)
   // Reset fullName state to clear our form inputs
   setFullName({ firstName: '', lastName: '' });
@@ -337,7 +337,7 @@ Your full `App.jsx` should look like this:
 ```javascript
 import { useState } from 'react';
 
-const App = () => {
+const App = () => {a
   
   const [title, setTitle] = useState('The full name will appear here.')
   const [fullName, setFullName] = useState({ firstName: '', lastName: '' });
@@ -379,4 +379,4 @@ const App = () => {
 export default App
 ```
 
-Test it out in the browser! 
+Test it out in the browser!
