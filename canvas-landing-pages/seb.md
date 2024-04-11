@@ -1,4 +1,4 @@
-# ![Controlled Forms in React](../assets/tktk-hero.png)
+# ![Controlled Forms in React](../assets/hero.png)
 
 ## About
 
