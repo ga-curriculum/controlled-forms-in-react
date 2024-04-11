@@ -32,6 +32,5 @@ To fix this, we use what are called [**controlled inputs**](https://react.dev/re
 
 In controlled inputs, the React component's state is directly tied to the value of the input field, ensuring the input displays what's in the state. This means there is a handler function firing an event each time a user types a character, which updates state, which updates the input filed. Its a complex cycle giving React total control of each input field as a user is interacting with it.
 
-![tktk Hunter can I get a graphic like this?](./assets/screenshot.png)
-OR
-![tktk Hunter can I get a graphic like this?](./assets/screenshot-2.png)
+![Flow chart](./assets/flow-chart.png)
+
