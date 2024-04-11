@@ -46,5 +46,4 @@ The `handleChange` function is triggered each time a user types or deletes a cha
 
 The input field is a controlled component, with its `value` attribute bound to the `cityInput` state. This binding ensures that the displayed value in the input field always matches the current state, and it gets updated in real-time as the user types.
 
-
-![tktk Hunter can I get a graphic like this?](./assets/screenshot-2.png)
+![Flow chart](./assets/flow-chart-b.png)
