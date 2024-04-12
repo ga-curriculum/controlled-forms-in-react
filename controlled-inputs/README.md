@@ -1,7 +1,5 @@
 # ![Controlled Forms in React - Controlled Inputs](./assets/hero.png)
 
-tktk Hunter, could you update this banner?
-
 **Learning objective:** By the end of this lesson, students will be able to understand and implement a controlled input in React by correctly setting up state variables, handler functions, and controlled inputs.
 
 ## How controlled inputs work
@@ -123,34 +121,6 @@ const App = () => {
 The `handleChange()` function is triggered each time a user types or deletes a character in the input. This function captures the new value from the input field using `event.target.value` and updates the `cityInput` state by calling the `setCityInput()` function.
 
 ![Flow chart](./assets/flow-chart-b.png)
-
-tktk Hunter, could you add a liiitle more detail in the input and the handle change? like:
-
-```jsx
-<input
-  value={cityInput}
-  onChange={handleChange}
-/>
-```
-
-and
-
-```jsx
-const handleChange = (event) => {
-  setCityInput(event.target.value);
-};
-```
-
-^^ I can see not doing this one to such detail, but might have to get creative with that, let's chat maybe?
-
-Oh or, here's an idea, as an alternative to all the above, maybe a mash up of the two flow charts we have - something like:
-
-```plaintext
-   State [small font]        Form Input [small font]
- {cityInput: "Seattle"}   >       <input />            > I think you get the idea?
-```
-
-end tktk
 
 We've now built a controlled input and have seen each piece at play!
 
