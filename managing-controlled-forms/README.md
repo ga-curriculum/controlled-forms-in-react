@@ -4,7 +4,7 @@
 
 ## Add an input form to the `App` component
 
-Now let's implement a real controlled form in our application.
+Now let's implement a controlled form in our application. 
 
 To get started, add the following starter code to `App.jsx`:
 

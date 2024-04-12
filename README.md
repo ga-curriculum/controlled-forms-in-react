@@ -15,7 +15,7 @@ In this module, we'll learn how to create and control forms in React using compo
 | ------ | :--------: | :---: | ------ |
 | [Setup](./setup/README.md)                                         | -- | -- | Setting up the development environment.                                                               |
 | [Concepts](./concepts/README.md)                                   | -- | -- | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
-| [Stateful Inputs](./stateful-inputs/README.md)                     | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
+| [Controlled Inputs](./controlled-inputs/README.md)                 | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
 | [Managing Controlled Forms](./managing-controlled-forms/README.md) | -- | -- | Control a form's state in React.                                                                      |
 | **Total content**                                                  | -- | -- |                                                                                                       |
 
