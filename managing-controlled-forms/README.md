@@ -4,12 +4,15 @@
 
 ## Add an input form to the `App` component
 
-Now let's implement a controlled form in our application. 
+Now let's implement a controlled form in our application.
 
-To get started, add the following starter code to `App.jsx`:
+To get started, replace the existing code in `App.jsx` with this code:
 
 ```jsx
-import { useState } from 'react'; // import the useState hook
+// src/App.jsx
+
+// import the useState hook
+import { useState } from 'react'; 
 
 const App = () => {
   // Add placeholder text for the title
