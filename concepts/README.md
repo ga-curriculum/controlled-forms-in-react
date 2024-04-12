@@ -22,7 +22,7 @@ React's virtual DOM is like a real-time holographic model of our skyscraper. Sin
 
 When changes ***do*** need to be made to our building, the virtual DOM allows React to make only the necessary updates efficiently. Rather than tearing down and rebuilding, our skyscraper is compared to the updated holograph, and the required changes are made to align the real skyscraper with the holograph.
 
-## Why controlled inputs?
+## Why controlled inputs and forms?
 
 Without using controlled inputs in React, when someone types into a form field, the browser keeps track of what's typed internally in its own memory. But this information isn't directly shared with our React component.
 
@@ -34,6 +34,8 @@ This leads to two main problems:
 To fix this, we use [controlled inputs](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable). This technique lets our React component take control over the form inputs, ensuring it stays updated and can respond to every change the user makes.
 
 By using controlled inputs, we can implement complex form logic and interactions in a more straightforward way.
+
+> 🧠 A controlled form in React is a form where all the form elements within it (inputs, checkboxes, select dropdowns, etc.) are controlled by React state.
 
 ### Controlling inputs in React
 

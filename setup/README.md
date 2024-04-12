@@ -14,9 +14,7 @@ Create a new Vite project for your React app:
 npm create vite@latest
 ```
 
-You'll be prompted to provide a project name. `vite-project` is the default, but when you start typing that default will go away. Choose a name that makes sense for this project; in this case, we'll call the app `controlled-forms-in-react`.
-
-You'll be prompted to choose a project name. Let's name it `controlled-forms-in-react`.
+You'll be prompted to provide a project name. `vite-project` is the default, but when you start typing that default will go away. Choose a name that makes sense for the project; in this case, we'll call the app `controlled-forms-in-react`.
 
 - Select a framework. Use the arrow keys to choose the `React` option and hit `Enter`.
 
@@ -52,15 +50,19 @@ rules: {
 
 The first addition prevents warnings if you're not declaring types for your props (which we're not), and the second prevents warnings if you're using contractions within JSX.
 
-### Clear `App.jsx`
+### Update `App.jsx`
 
 Open the `App.jsx` file in the `src` directory and replace the contents of it with the following:
 
 ```jsx
 // src/App.jsx
 
+import './App.css'
+
 const App = () => {
-  return <h1>Hello world!</h1>;
+  return (
+    <h1>Hello world!</h1>
+  );
 };
 
 export default App;

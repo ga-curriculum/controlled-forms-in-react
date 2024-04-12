@@ -9,10 +9,11 @@ Now let's implement a real controlled form in our application.
 To get started, add the following starter code to `App.jsx`:
 
 ```jsx
-import { useState } from ‘react’; // import the useState hook
+import { useState } from 'react'; // import the useState hook
 
 const App = () => {
-  // Add placeholder text for the title - we'll use the form to update this state by the end of this lesson
+  // Add placeholder text for the title
+  // we'll use the form to update this state by the end of this lesson
   const [title, setTitle] = useState('The full name will appear here.')
 
   return (
@@ -20,7 +21,7 @@ const App = () => {
       <h2>{title}</h2>
       <form>
         <label htmlFor="firstName">First Name: </label>
-          <input id="firstName" />
+        <input id="firstName" />
       </form>
     </>
   );

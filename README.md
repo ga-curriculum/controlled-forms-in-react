@@ -11,18 +11,20 @@ In this module, we'll learn how to create and control forms in React using compo
 
 ## Content
 
-| Lesson                                                             | Skills                                                                                               |
-| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| [Setup](./setup/README.md)                                         | Setting up the development environment                                                               |
-| [Concepts](./concepts/README.md)                                   | Describe the clash between virtual dom and real dom and why controlled forms are a preferred pattern |
-| [Stateful Inputs](./stateful-inputs/README.md)                     | Understanding the relationship between state variables, handler functions, and controlled inputs     |
-| [Managing Controlled Forms](./managing-controlled-forms/README.md) | Control a form's state                                                                               |
+| Lesson | Video Time | Video | Skills |
+| ------ | :--------: | :---: | ------ |
+| [Setup](./setup/README.md)                                         | -- | -- | Setting up the development environment.                                                               |
+| [Concepts](./concepts/README.md)                                   | -- | -- | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
+| [Stateful Inputs](./stateful-inputs/README.md)                     | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
+| [Managing Controlled Forms](./managing-controlled-forms/README.md) | -- | -- | Control a form's state in React.                                                                      |
+| **Total content**                                                  | -- | -- |                                                                                                       |
 
 ## Level Up content
 
-| Lesson                                           | Skills                                          |
-| ------------------------------------------------ | ----------------------------------------------- |
-| [Form Validations](./form-validations/README.md) | Implement front-end validations on a react form |
+| Lesson | Video Time | Video | Skills |
+| ------ | :--------: | :---: | ------ |
+| [Form Validations](./form-validations/README.md) | -- | -- | Implement front-end validations on a React form. |
+| **Total Level Up content**                       | -- | -- |                                                  |
 
 ## References
 
