@@ -18,7 +18,7 @@ Imagine that the UI of our React app is a giant skyscraper.
 
 The real DOM is the building and represents the elements and structure displayed on the screen. Any changes we make to the building would be time-consuming and cumbersome. We'd need to tear down and rebuild the skyscraper whenever we wanted to make any changes to the building. Sounds expensive.
 
-React's virtual DOM is like a real-time holographic model of our skyscraper. Since it's just a holograph, we can easily manipulate and update. We can even make frequent changes to our holograph without changing the building itself.
+React's virtual DOM is like a real-time holographic model of our skyscraper. Since it's just a hologram, we can easily manipulate and update. We can even make frequent changes to our holograph without changing the building itself.
 
 When changes ***do*** need to be made to our building, the virtual DOM allows React to make only the necessary updates efficiently. Rather than tearing down and rebuilding, our skyscraper is compared to the updated holograph, and the required changes are made to align the real skyscraper with the holograph.
 
@@ -41,7 +41,7 @@ By using controlled inputs, we can implement complex form logic and interactions
 
 When we use controlled inputs, the component state is the single source of truth. This ensures that the value of an input is always synchronized with state.
 
-This means a handler function fires an event each time a user types a character, which updates state, which updates the input filed. It's a complex cycle, but it gives React total control of each input field as a user interacts with it.
+This means a handler function fires an event each time a user types a character, which updates state, which updates the input field. It's a complex cycle, but it gives React total control of each input field as a user interacts with it.
 
 ![Flow chart](./assets/flow-chart.png)
 
