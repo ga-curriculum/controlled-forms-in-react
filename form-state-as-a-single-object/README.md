@@ -134,7 +134,7 @@ Let's change our inputs to use the new handler function:
 
 ### Setting `formData`
 
-tktk Hunter, if you can think of a a more visual way of representing anything happening in this section, this seems like a good spot for some more visual aides. Particularly around the `[event.target.name]` business potentially?
+![Code breakdown](./assets/hero.png)
 
 Back to the `handleChange()` function from earlier:
 

@@ -1,7 +1,5 @@
 # ![Controlled Forms in React - Handling Form Submission](./assets/hero.png)
 
-tktk Hunter, this needs a new hero
-
 **Learning objective:** By the end of this lesson, students will understand the basics of handling simple form submissions in React.
 
 ## Add the submit button
