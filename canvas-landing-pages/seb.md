@@ -8,18 +8,20 @@ In this module, we'll learn how to create and control forms in React using compo
 
 | Lesson | Video Time | Video | Skills |
 | ------ | :--------: | :---: | ------ |
-| [Setup](../setup/README.md)                                         | -- | -- | Setting up the development environment.                                                               |
-| [Concepts](../concepts/README.md)                                   | -- | -- | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
-| [Controlled Inputs](../controlled-inputs/README.md)                 | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
-| [Managing Controlled Forms](../managing-controlled-forms/README.md) | -- | -- | Control a form's state in React.                                                                      |
-| **Total content**                                                  | -- | -- |                                                                                                       |
+| [Setup](../setup/README.md)                                                 | -- | -- | Setting up the development environment.                                                               |
+| [Concepts](../concepts/README.md)                                           | -- | -- | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
+| [Controlled Inputs](../controlled-inputs/README.md)                         | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
+| [Managing Controlled Forms](../managing-controlled-forms/README.md)         | -- | -- | Control a form's state in React.                                                                      |
+| [Form State as a Single Object](../form-state-as-a-single-object/README.md) | -- | -- | Refactor multiple state variables into a single form state object.                                    |
+| [Handling Form Submission](../handling-form-submission/README.md)           | -- | -- | Handling form submission events, and their aftermath.                                                 |
+| **Total content**                                                           | -- | -- |                                                                                                       |
 
 ## Level Up content
 
 | Lesson | Video Time | Video | Skills |
 | ------ | :--------: | :---: | ------ |
 | [Form Validations](../form-validations/README.md) | -- | -- | Implement front-end validations on a React form. |
-| **Total Level Up content**                       | -- | -- |                                                  |
+| **Total Level Up content**                        | -- | -- |                                                  |
 
 ## References
 

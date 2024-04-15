@@ -29,7 +29,7 @@ const App = () => {
   return (
     <>
       <label htmlFor="cityInput">City: </label>
-      <input id="cityInput" type="text" />
+      <input id="cityInput" name="cityInput" type="text" />
     </>
   );
 };
@@ -58,7 +58,7 @@ const App = () => {
   return (
     <>
       <label htmlFor="cityInput">City: </label>
-      <input id="cityInput" type="text" />
+      <input id="cityInput" name="cityInput" type="text" />
     </>
   );
 };
@@ -70,7 +70,7 @@ The `cityInput` state variable, initialized with an empty string, holds the text
 
 ### 2. Add an input value tied to state
 
-Give the input a `value` attribute set to the `cityInput` state.
+Once we have state in place, we can add a `value` prop to our input and set the value of that prop to `cityInput`. In standard HTML, `value` is an attribute of the input element. However, when you're working with JSX in React, these attributes are treated as `props`. Despite the difference in name, there is functionally very little difference for us as we interact with `value`.
 
 ```jsx
 // src/App.jsx
@@ -78,12 +78,12 @@ Give the input a `value` attribute set to the `cityInput` state.
   return (
     <>
       <label htmlFor="cityInput">City: </label>
-      <input id="cityInput" type="text" value={cityInput}/>
+      <input id="cityInput" name="cityInput" type="text" value={cityInput}/>
     </>
   );
 ```
 
-The input field's `value` attribute is now bound to the `cityInput` state. This binding ensures that the displayed value in the input field always matches the current state, and is updated in real-time as the user types.
+The input field's `value` prop is now bound to the `cityInput` state. This binding ensures that the displayed value in the input field always matches the current state, and is updated in real-time as the user types.
 
 Eventually. Right now, you'll notice that if you try typing anything in this input, it remains blank. Why is this?
 
@@ -108,6 +108,7 @@ const App = () => {
       <label htmlFor="cityInput">City: </label>
       <input 
         id="cityInput"
+        name="cityInput"
         type="text"
         value={cityInput}
         onChange={handleChange}
@@ -117,6 +118,8 @@ const App = () => {
 };
   
 ```
+
+Every time the `onChange` event fires off, React automatically sends an `event` object to the handler function. This object contains information about the event, including which element was clicked. In our `handleMode()` function, we receive this event object as a parameter. By checking the `id` property of `event.target` (the clicked element), we can determine which button was clicked.
 
 The `handleChange()` function is triggered each time a user types or deletes a character in the input. This function captures the new value from the input field using `event.target.value` and updates the `cityInput` state by calling the `setCityInput()` function.
 
@@ -147,6 +150,7 @@ const App = () => {
       <label htmlFor="cityInput">City: </label>
       <input
         id="cityInput"
+        name="cityInput"
         type="text"
         value={cityInput}
         onChange={handleChange}
