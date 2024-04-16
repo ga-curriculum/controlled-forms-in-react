@@ -1,5 +1,7 @@
 # ![Controlled Forms in React - Form State as a Single Object](./assets/hero.png)
 
+tktk Hunter, can you update this hero? I forgot to tktk this one, my bad.
+
 **Learning objective:** By the end of this lesson, students will be able to utilize a single state object to manage form state.
 
 ## Time for a refactor
