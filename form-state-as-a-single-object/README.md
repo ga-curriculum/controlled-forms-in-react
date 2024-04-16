@@ -134,9 +134,6 @@ Let's change our inputs to use the new handler function:
 
 ### Setting `formData`
 
-tktk David
-![Code breakdown](./assets/handle-change.png)
-
 Back to the `handleChange()` function from earlier:
 
 ```jsx
@@ -150,16 +147,25 @@ Back to the `handleChange()` function from earlier:
 **Note**: A couple of interesting things are happening here:
 
 1. We use the spread operator to copy any values from the original state into the new object used to construct the new state. This way, when updating the `firstName` state, we don't lose the `lastName` state, and vice versa!
-2. `event.target.name` takes the value of the name prop in our input form. We're able to access the key dynamically through the use of square bracket notation. If the user types into the `firstName` input, then the `name` of that input is used as the key and the `value` of that input is used as the value.
+2. `event.target.name` takes the value of the name prop in our input form. We're able to access the key dynamically through the use of square bracket notation.
 
-For a more visual example, typing the name "Sam" into the first name input would result in an event handler that does the following:
+Let's break down the second point even further:
+
+![Code breakdown](./assets/handle-change.png)
+
+1. This is the `formData` state. The `firstName` property is highlighted.
+2. The `<input>` element. The value of the `name` prop aligns with the `firstName` property in the `formData` state. The `formData.firstName` state is used as the value of the input.
+3. When a user changes the data in this input, the `[event.target.name]: event.target.value` code is executed. The value of the `<input>` element's `name` prop (`firstName`) is set as a key on the new `formData` state and has a value matching the new value.
+4. This is the result of the above, assuming the user has typed `Alex` into the `<input name="firstName">` element.
+
+Typing the name "Sam" into the first name input would result in an event handler that is computed as the following:
 
 ```jsx
-// First letter typed ("S")
+// first letter typed ("S")
 setFormData({ ...formData, firstName: 'S' })
-// Second letter typed ("a")
+// second letter typed ("a")
 setFormData({ ...formData, firstName: 'Sa' })
-// Third letter typed ("m")
+// third letter typed ("m")
 setFormData({ ...formData, firstName: 'Sam' })
 
 // With our state looking like this afterward:
@@ -169,7 +175,43 @@ setFormData({ ...formData, firstName: 'Sam' })
 }
 ```
 
-Note that because we are spreading all of our existing state into the new state object, we don't lose the `firstName` property's value even when we call the handler from our last name input:
+Order is important. Note the code to set our state:
+
+```jsx
+setFormData({ ...formData, [event.target.name]: event.target.value });
+```
+
+This pattern works to update state because the existing `formData` state is spread into the `setFormData()` function ***first***, and then the new data to update that existing state comes after it.
+
+Going back to the example above, where the user has typed the first letter (`"S"`) of the name "Sam", the new state to be set is computed as the following:
+
+```jsx
+setFormData({
+  firstName: '', // first instance of firstName
+  lastName: '',
+  firstName: 'S', // second instance of firstName
+})
+```
+
+Because there is a duplicate `firstName` property, the first one is discarded, leaving only the second - the one with the new value for `firstName`. If the setter was reversed:
+
+```jsx
+setFormData({ [event.target.name]: event.target.value, ...formData });
+```
+
+The new state to be set would be computed as the following:
+
+```jsx
+setFormData({
+  firstName: 'S', // first instance of firstName
+  firstName: '', //second instance of firstName 
+  lastName: '',
+})
+```
+
+Again, the first instance of `firstName` would be discarded, leaving only the existing `firstName` state.
+
+Finally, note that because we are spreading all of our existing state into the new state object, we don't lose the `firstName` property's value even when we call the handler from our last name input:
 
 ```jsx
 // First letter typed ("V")
@@ -186,7 +228,7 @@ setFormData({ ...formData, lastName: 'o' })
 
 As a result of this dynamic behavior, we can use this one function in both of our `onChange` handlers!
 
-There's a lot going on in this event handler, and it might feel intimidating at first. However, there is good news - this code is highly repeatable.
+There's a lot going on in this event handler, and it might feel intimidating at first. However, there is good news - this code is highly reusable.
 
 > ♻️ Repeatable Pattern: For forms with text-based inputs, this exact `handleChange()` function can be used to manage form state - given that your state and elements are set up in a specific way.
 >
