@@ -1,10 +1,10 @@
 # ![Controlled Forms in React - Concepts](./assets/hero.png)
 
-**Learning objective:** By the end of this lesson, students will be able to explain the concept of React's virtual DOM and its importance with controlled forms in React applications.
+**Learning objective:** By the end of this lesson, students will be able to explain the concept of React's virtual DOM and its importance in regards to controlled forms in React applications.
 
 ## React's virtual DOM
 
-In web browsers, the DOM is like a map of a website's layout, where each part of the HTML structure is represented as nodes and objects. The virtual DOM, specific to React, is a lightweight, memory-based copy of the actual DOM, essentially a duplicate object managed by React.
+In web browsers, the DOM (Document Object Model) is like a map of a website's layout, where each part of the HTML structure is represented as nodes and objects. The virtual DOM, specific to React, is a lightweight, memory-based copy of the actual DOM, essentially a duplicate object managed by React.
 
 Traditional DOM manipulation requires manual state management through the use of event handlers, variables, and direct content updates. This is often complex and prone to sync issues between the app's state and what it displays based on that data.
 
@@ -28,8 +28,8 @@ Without using controlled inputs in React, when someone types into a form field, 
 
 This leads to two main problems:
 
-- **Our app can't respond to changes**: The most recent input value isn't stored where the React component can access it. This inconsistency can cause issues when the component's state needs to reflect the current inputs for validation or processing. For example, if we wanted to include functionality like enabling a submit button only when certain conditions are met.
 - **Information flow is limited**: The data goes only one way – from the user typing to the browser storing it. Our React component isn't in the loop.
+- **Our app can't respond to changes**: The most recent input value isn't stored where the React component can access it. This inconsistency can cause issues when the component's state needs to reflect the current inputs for validation or processing. For example, if we wanted to include functionality like enabling a submit button only when certain conditions are met.
 
 To fix this, we use [controlled inputs](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable). This technique lets our React component take control over the form inputs, ensuring it stays updated and can respond to every change the user makes.
 

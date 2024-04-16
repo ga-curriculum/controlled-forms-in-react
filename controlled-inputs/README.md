@@ -119,9 +119,9 @@ const App = () => {
   
 ```
 
-Every time the `onChange` event fires off, React automatically sends an `event` object to the handler function. This object contains information about the event, including which element was clicked. In our `handleMode()` function, we receive this event object as a parameter. By checking the `id` property of `event.target` (the clicked element), we can determine which button was clicked.
+When a user types or deletes a character in the input, the `onChange` event fires off. React automatically sends an `event` object to the `handleChange()` handler function. This object contains information about the event, including the element the user changed, found on `event.target`.
 
-The `handleChange()` function is triggered each time a user types or deletes a character in the input. This function captures the new value from the input field using `event.target.value` and updates the `cityInput` state by calling the `setCityInput()` function.
+In our `handleChange()` function, we receive this event object as a parameter. The function captures the new value from the input field using `event.target.value` and updates the `cityInput` state by calling the `setCityInput()` function.
 
 ![Flow chart](./assets/flow-chart-b.png)
 

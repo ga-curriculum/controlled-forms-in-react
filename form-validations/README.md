@@ -154,7 +154,7 @@ Next, add `checkErrors` helper to our existing `handleChange` function:
   };
 ```
 
-Now, our state is changes when there is an error!
+Now, our state changes when there is an error!
 
 But we're not showing the changes to users - let's do that next by adding a `<p>` after `<input>` that will be shown if there is an error:
 
@@ -227,7 +227,7 @@ We don't need to create a new state to handle this, as we can calculate both val
 // src/App.jsx
 
    const formIsInvalid = Object.values(errors).some(Boolean);
-   const formHasNoMissingData = !Object.values(formData).every(Boolean);
+   const formHasMissingData = !Object.values(formData).every(Boolean);
 ```
 
 Here's a quick explanation of this code, first for `formIsInvalid`:
@@ -236,12 +236,12 @@ Here's a quick explanation of this code, first for `formIsInvalid`:
 - `.some(Boolean)` checks if any values are truthy (non-empty strings). If so, `.some()` will return `true`.
 - Ultimately `formIsInvalid` is only `true` if there are error messages in state.
 
-For `formHasNoMissingData`:
+For `formHasMissingData`:
 
 - Again, `Object.values()` is used to create an array of the values in the `formData` object, or in other words, an array containing the data the user has entered into the form.
 - Check if every value in the array is truthy (non-empty strings) using `.every(Boolean)`.
 - Then, use the bang operator to invert the boolean value returned by `.every()`.
-- Ultimately, `formHasNoMissingData` is only `true` if none of the values in `formData` is an empty string.
+- Ultimately, `formHasMissingData` is only `true` if none of the values in `formData` is an empty string.
 - We can't derive this from the `errors` state because we only check for errors after the user has entered something into an input.
 
 Modify your `handleSubmit` function to look like this:
@@ -266,12 +266,12 @@ Finally, let's use our calculated values to disable the submit button conditiona
 ```jsx
 // src/App.jsx
 
-        <button type="submit" disabled={formIsInvalid || formHasNoMissingData}>
+        <button type="submit" disabled={formIsInvalid || formHasMissingData}>
           Submit
         </button>
 ```
 
-If either `formIsInvalid` or `formHasNoMissingData` is true, then the button will be disabled.
+If either `formIsInvalid` or `formHasMissingData` is true, then the button will be disabled.
 
 Try it out!
 
