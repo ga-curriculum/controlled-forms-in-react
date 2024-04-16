@@ -91,9 +91,9 @@ We'll need to define some rules to determine whether input data is valid. Since 
 3. Passwords must be at least six characters long.
 4. Passwords and password confirmations must match.
 
-> ⚠️ Note that these validators are arbitrary, and attaching any kind of validator on a name field (or even assuming people have first and last names) is a [common pitfall](https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/) that you should attempt to avoid as a developer.
+> ⚠️ Note that these validators are arbitrary. Attaching any validator to a name field (or even assuming people have first and last names) is a [common pitfall](https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/) that you should attempt to avoid as a developer.
 
-Next we will define logic to enforce these rules in our handler function.
+Next, we will define logic to enforce these rules in our handler function.
 
 To help keep a separation of concerns, let's create a new helper function called `checkErrors`, whose job will be to check each input as it changes and test it against the provided criteria:
 
@@ -108,7 +108,7 @@ To help keep a separation of concerns, let's create a new helper function called
         ...errors,
         firstName:
           target.value.length < 3
-            ? 'First name must be at least three characters long'
+            ? 'Your first name must be at least three characters long.'
             : '',
       });
     }
@@ -117,7 +117,7 @@ To help keep a separation of concerns, let's create a new helper function called
         ...errors,
         lastName:
           target.value.length < 2
-            ? 'Last name must be at least two characters long'
+            ? 'Your last name must be at least two characters long.'
             : '',
       });
     }
@@ -126,7 +126,7 @@ To help keep a separation of concerns, let's create a new helper function called
         ...errors,
         password:
           target.value.length < 6
-            ? 'Password must be at least six characters long'
+            ? 'Your password must be at least six characters long.'
             : '',
       });
     }
@@ -134,7 +134,9 @@ To help keep a separation of concerns, let's create a new helper function called
       setErrors({
         ...errors,
         passwordConfirmation:
-          formData.password !== target.value ? 'Passwords do not match' : '',
+          formData.password !== target.value
+            ? 'The passwords do not match.'
+            : '',
       });
     }
   };
@@ -152,7 +154,7 @@ Next, add `checkErrors` helper to our existing `handleChange` function:
   };
 ```
 
-So our state is changing when there is an error now!
+Now, our state is changes when there is an error!
 
 But we're not showing the changes to users - let's do that next by adding a `<p>` after `<input>` that will be shown if there is an error:
 
@@ -208,7 +210,7 @@ But we're not showing the changes to users - let's do that next by adding a `<p>
       </form>
 ```
 
-After adding this code, try to type into the four different inputs. You should see the error messages beneath the corresponding form fields if these validation rules were added correctly. When you have entered valid data those messages will go away. This is an excellent example of using the values in state to help perform form validation.
+After adding this code, try typing into the four different inputs. You should see the error messages beneath the corresponding form fields. When you have entered valid data, those messages will disappear. This is an example of using the values in state to help perform form validation.
 
 ## Using form validation to disable submission
 
@@ -230,9 +232,9 @@ We don't need to create a new state to handle this, as we can calculate both val
 
 Here's a quick explanation of this code, first for `formIsInvalid`:
 
-- `Object.values()` is used to create an array of the values in the `errors` object, in other words, an array of the error message strings that users may see.
-- `.some(Boolean)` is used to check if any values are truthy (non-empty strings) if so, `.some()` will return `true`.
-- Ultimately `formIsInvalid` is only true if there are error messages in state.
+- `Object.values()` is used to create an array of the values in the `errors` object. In other words, this will be an array of the error message strings that users may see.
+- `.some(Boolean)` checks if any values are truthy (non-empty strings). If so, `.some()` will return `true`.
+- Ultimately `formIsInvalid` is only `true` if there are error messages in state.
 
 For `formHasNoMissingData`:
 
@@ -240,7 +242,7 @@ For `formHasNoMissingData`:
 - Check if every value in the array is truthy (non-empty strings) using `.every(Boolean)`.
 - Then, use the bang operator to invert the boolean value returned by `.every()`.
 - Ultimately, `formHasNoMissingData` is only `true` if none of the values in `formData` is an empty string.
-- We can't derive this from the `errors` state, because we're only checking for errors after the user has entered something into an input.
+- We can't derive this from the `errors` state because we only check for errors after the user has entered something into an input.
 
 Modify your `handleSubmit` function to look like this:
 
@@ -259,7 +261,7 @@ Modify your `handleSubmit` function to look like this:
   };
 ```
 
-Finally, let's use our calculated values to conditionally disable the submit button:
+Finally, let's use our calculated values to disable the submit button conditionally:
 
 ```jsx
 // src/App.jsx
@@ -273,4 +275,4 @@ If either `formIsInvalid` or `formHasNoMissingData` is true, then the button wil
 
 Try it out!
 
-> 🚨 Front-end validation is NOT a legitimate security measure but creates a better user experience. It should still be provided to save the backend from random bad requests and let the front-end user only submit forms without apparent errors. It would not be difficult for a bad actor to circumvent a disabled button, for example, so it's crucial to not rely on front-end validation for security.
+> 🚨 Front-end validation is NOT a legitimate security measure but creates a better user experience. It should still be provided to save the backend from random bad requests and let the front-end user only submit forms without apparent errors. For example, it would not be difficult for a bad actor to circumvent a disabled button, so it's crucial to not rely on front-end validation for security.
