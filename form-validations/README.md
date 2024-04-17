@@ -128,6 +128,10 @@ To help keep a separation of concerns, let's create a new helper function called
           target.value.length < 6
             ? 'Your password must be at least six characters long.'
             : '',
+        passwordConfirmation:
+            formData.passwordConfirmation !== target.value
+              ? 'The passwords do not match.'
+              : '',
       });
     }
     if (target.name === 'passwordConfirmation') {

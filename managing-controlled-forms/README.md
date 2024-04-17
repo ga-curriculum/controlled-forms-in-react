@@ -72,7 +72,6 @@ With state in place, add a `value` prop to the input and set its value to `first
         <label htmlFor="firstName">First Name: </label>
         <input
           id="firstName"
-          // add the following to set this input's value using state:
           value={firstName}
         />
       </form>
@@ -106,7 +105,6 @@ const App = () => {
           id="firstName"
           name="firstName"
           value={firstName}
-          // when the input changes, call the event handler
           onChange={handleFirstNameChange}
         />
       </form>
