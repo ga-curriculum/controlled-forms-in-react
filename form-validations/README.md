@@ -245,7 +245,7 @@ For `formHasMissingData`:
 - Again, `Object.values()` is used to create an array of the values in the `formData` object, or in other words, an array containing the data the user has entered into the form.
 - Check if every value in the array is truthy (non-empty strings) using `.every(Boolean)`.
 - Then, use the bang operator to invert the boolean value returned by `.every()`.
-- Ultimately, `formHasMissingData` is only `true` if none of the values in `formData` is an empty string.
+- Ultimately, `formHasMissingData` is only `true` if any of the values in `formData` is an empty string.
 - We can't derive this from the `errors` state because we only check for errors after the user has entered something into an input.
 
 Modify your `handleSubmit` function to look like this:
