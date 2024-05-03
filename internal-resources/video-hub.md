@@ -4,8 +4,8 @@ Here you'll find the outlines and the assets used in video content, as well as t
 
 ## Video content
 
-🪨 Originals
+🪨 [Originals](https://drive.google.com/drive/u/0/folders/1JeFV4dbZLNZKbQ-F2tnIAq3cnjZRGFSL)
 
-💎 Finals
+💎 [Finals](https://generalassembly.wistia.com/folders/8nsa0pby34)
 
-📊 Slide Deck
+📊 [Slide Deck](https://docs.google.com/presentation/d/1Bq-6sXmCmt7qWd5kQqzeso9OULkvZ4_JTjzv6kfq5Vs/edit)

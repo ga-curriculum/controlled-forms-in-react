@@ -13,20 +13,20 @@ In this module, we'll learn how to create and control forms in React using compo
 
 | Lesson | Video Time | Video | Skills |
 | ------ | :--------: | :---: | ------ |
-| [Setup](./setup/README.md)                                                 | -- | -- | Setting up the development environment.                                                               |
-| [Concepts](./concepts/README.md)                                           | -- | -- | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
-| [Controlled Inputs](./controlled-inputs/README.md)                         | -- | -- | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
-| [Managing Controlled Forms](./managing-controlled-forms/README.md)         | -- | -- | Control a form's state in React.                                                                      |
-| [Form State as a Single Object](./form-state-as-a-single-object/README.md) | -- | -- | Refactor multiple state variables into a single form state object.                                    |
-| [Handling Form Submission](./handling-form-submission/README.md)           | -- | -- | Handling form submission events, and their aftermath.                                                 |
-| **Total content**                                                          | -- | -- |                                                                                                       |
+| [Setup](./setup/README.md)                                                 |  2 min | [link](https://generalassembly.wistia.com/medias/cz3lva23to) | Setting up the development environment.                                                               |
+| [Concepts](./concepts/README.md)                                           |  5 min | [link](https://generalassembly.wistia.com/medias/hk8ci1ndaj) | Describe the clash between virtual DOM and real DOM and why controlled forms are a preferred pattern. |
+| [Controlled Inputs](./controlled-inputs/README.md)                         |  6 min | [link](https://generalassembly.wistia.com/medias/8x33kkj9e5) | Understanding the relationship between state variables, handler functions, and controlled inputs.     |
+| [Managing Controlled Forms](./managing-controlled-forms/README.md)         |  7 min | [link](https://generalassembly.wistia.com/medias/v8nvp8arkl) | Control a form's state in React.                                                                      |
+| [Form State as a Single Object](./form-state-as-a-single-object/README.md) |  8 min | [link](https://generalassembly.wistia.com/medias/cpfo7u54nf) | Refactor multiple state variables into a single form state object.                                    |
+| [Handling Form Submission](./handling-form-submission/README.md)           |  5 min | [link](https://generalassembly.wistia.com/medias/5bweqi4a99) | Handling form submission events, and their aftermath.                                                 |
+| **Total content**                                                          | 33 min |                                                              |                                                                                                       |
 
 ## Level Up content
 
 | Lesson | Video Time | Video | Skills |
 | ------ | :--------: | :---: | ------ |
-| [Form Validations](./form-validations/README.md) | -- | -- | Implement front-end validations on a React form. |
-| **Total Level Up content**                       | -- | -- |                                                  |
+| [Form Validations](./form-validations/README.md) | 13 min | [link](https://generalassembly.wistia.com/medias/w12crjh2r9) | Implement front-end validations on a React form. |
+| **Total Level Up content**                       | 13 min |                                                              |                                                  |
 
 ## References
 
