@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - References](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">References</span>
+</h1>
 
 ## Lesson references
 

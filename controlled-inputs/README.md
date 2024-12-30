@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Controlled Inputs](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Controlled Inputs</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will be able to understand and implement a controlled input in React by correctly setting up state variables, handler functions, and controlled inputs.
 

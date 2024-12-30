@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Concepts](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Concepts</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will be able to explain the concept of React's virtual DOM and its importance in regards to controlled forms in React applications.
 

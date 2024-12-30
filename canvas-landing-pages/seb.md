@@ -1,4 +1,7 @@
-# ![Controlled Forms in React](../assets/hero.png)
+<h1>
+  <span class="prefix"></span>
+  <span class="headline">Controlled Forms in React</span>
+</h1>
 
 ## About
 

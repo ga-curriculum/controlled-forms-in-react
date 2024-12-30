@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Form State as a Single Object](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Form State as a Single Object</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will be able to utilize a single state object to manage form state.
 

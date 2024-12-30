@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Form Validations](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Form Validations</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will be able to use form validation on their controlled forms in React.
 

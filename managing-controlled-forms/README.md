@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Managing Controlled Forms](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Managing Controlled Forms</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will be able to create and manage a controlled form in React.
 

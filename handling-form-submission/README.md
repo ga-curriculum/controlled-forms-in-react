@@ -1,4 +1,7 @@
-# ![Controlled Forms in React - Handling Form Submission](./assets/hero.png)
+<h1>
+  <span class="headline">Controlled Forms in React</span>
+  <span class="subhead">Handling Form Submission</span>
+</h1>
 
 **Learning objective:** By the end of this lesson, students will understand the basics of handling simple form submissions in React.
 
