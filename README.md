@@ -33,9 +33,9 @@ In this module, we'll learn how to create and control forms in React using compo
 
 ### Course landing pages
 
-- [RDS - React Development Short Course](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/controlled-forms-in-react/canvas-landing-pages/rds.html)
-- [SEB - Software Engineering Bootcamp](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/controlled-forms-in-react/canvas-landing-pages/seb.html)
-- [Fallback](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/controlled-forms-in-react/canvas-landing-pages/fallback.html)
+- [RDS - React Development Short Course](https://ga-curriculum.github.io/controlled-forms-in-react/canvas-landing-pages/rds.html)
+- [SEB - Software Engineering Bootcamp](https://ga-curriculum.github.io/controlled-forms-in-react/canvas-landing-pages/seb.html)
+- [Fallback](https://ga-curriculum.github.io/controlled-forms-in-react/canvas-landing-pages/fallback.html)
 
 ### Resources
 
@@ -47,4 +47,4 @@ In this module, we'll learn how to create and control forms in React using compo
 
 ---
 
-**Find a 👾 bug 👾 or have suggestions? [Let us know](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/module-feedback.html)!**
+**Find a 👾 bug 👾 or have suggestions? [Let us know](https://ga-curriculum.github.io/universal-resources-internal/module-feedback.html)!**
